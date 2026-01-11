@@ -1,7 +1,7 @@
 {
   "name": "beverost",
   "version": "1.0.0",
-  "description": "Better server boost for server development in Node.js",
+  "description": "Beverost, the Better Server Boost. A Node.js toolkit for server development with structured logging, custom errors, and API utilities.",
   "main": "dist/cjs/src/index.js",
   "module": "dist/mjs/src/index.js",
   "types": "dist/types/src/index.d.ts",
@@ -36,7 +36,7 @@
     "typescript",
     "development"
   ],
-  "author": "Jandeampan",
+  "author": "Jansvet",
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.39.2",
@@ -63,12 +63,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jandeampan/beverost.git"
+    "url": "https://github.com/Jansvet/beverost.git"
   },
   "bugs": {
-    "url": "https://github.com/Jandeampan/beverost/issues"
+    "url": "https://github.com/Jansvet/beverost/issues"
   },
-  "homepage": "https://github.com/Jandeampan/beverost#readme",
+  "homepage": "https://github.com/Jansvet/beverost#readme",
   "files": [
     "dist",
     "README.md",

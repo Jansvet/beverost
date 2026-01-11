@@ -1,6 +1,6 @@
 # Beverost
 
-Better server boost for server development in Node.js
+**Beverost**, the **Better Server Boost**. A Node.js toolkit for server development with structured logging, custom errors, and API utilities.
 
 Beverost is a comprehensive toolkit designed to enhance server-side development in Node.js. It provides a set of utilities, including custom error classes and a flexible logging system, to streamline the development process and improve error handling and logging capabilities in your Node.js applications.
 
