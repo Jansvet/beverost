@@ -26,7 +26,7 @@ Beverost is a comprehensive toolkit designed to enhance server-side development 
 To install Beverost, run the following command in your project directory:
 
 ```bash
-npm install Jansvet/beverost
+npm install beverost
 ```
 
 ## Usage
