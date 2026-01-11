@@ -6,6 +6,7 @@
 import { createLogger, format, transports } from 'winston';
 import * as path from 'path';
 import * as fs from 'fs';
+import { LogDirectoryNotFoundError } from './errors';
 
 /**
  * A comprehensive logging utility class that provides various logging functionalities.
@@ -114,7 +115,7 @@ export class Logger {
             if (options?.recursive) {
                 fs.mkdirSync(dir, { recursive: true });
             } else {
-                throw new Error(`Log directory does not exist: ${dir}`);
+                throw new LogDirectoryNotFoundError(`Log directory does not exist: ${dir}`, dir);
             }
         }
 

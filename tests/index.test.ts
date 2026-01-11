@@ -32,7 +32,11 @@ describe('Logger', () => {
     await new Promise(resolve => setTimeout(resolve, 100)); // Wait for file creation
   });
 
-  afterEach(async () => {
+afterEach(async () => {
+    if (logger && (logger as any).logger) {
+        (logger as any).logger.close();
+    }
+    await new Promise(resolve => setTimeout(resolve, 50));
     if (fs.existsSync(testLogFile)) {
       await fs.promises.unlink(testLogFile);
     }
@@ -51,15 +55,24 @@ describe('Logger', () => {
     const newLogFile = path.join(testLogDir, 'subdir', 'new.log');
     await logger.setLogFilePath(newLogFile, { recursive: true });
     await new Promise(resolve => setTimeout(resolve, 100)); // Wait for directory creation
-    expect(fs.existsSync(path.dirname(newLogFile))).toBe(true);
+    await expect(fs.existsSync(path.dirname(newLogFile))).toBe(true);
   });
 
   it('should throw LogDirectoryNotFoundError when setting log file path without recursive option', async () => {
     const newLogFile = path.join(testLogDir, 'nonexistent', 'new.log');
-    await expect(logger.setLogFilePath(newLogFile)).rejects.toThrow(LogDirectoryNotFoundError);
+    
+    try {
+        await logger.setLogFilePath(newLogFile);
+        // If it doesn't throw, we force a failure
+        fail('Should have thrown an error');
+    } catch (error) {
+        expect(error).toBeInstanceOf(LogDirectoryNotFoundError);
+        expect((error as any).message).toContain('Log directory does not exist');
+    }
   });
 
   it('should log messages with different levels', async () => {
+    logger.setLogLevel('debug');
     await logger.info('Info message');
     await logger.warn('Warning message');
     await logger.error('Error message');
