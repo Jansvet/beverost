@@ -127,7 +127,7 @@ export class ApiService {
    *   console.error('Failed to fetch data:', error);
    * }
    */
-  async fetch(endpointId: string, options?: RequestInit): Promise<any> {
+  async fetch<T = any>(endpointId: string, options?: RequestInit): Promise<T> {
     const endpoint = this.endpoints.get(endpointId);
     if (!endpoint) {
       this.logger.error(`Endpoint not found: ${endpointId}`);
@@ -154,7 +154,7 @@ export class ApiService {
       }
       const data = await response.json();
       this.logger.info(`Successfully fetched data from ${endpoint.name}`);
-      return data;
+      return data as T;
     } catch (error: unknown) {
       if (error instanceof ApiError) {
         throw error;
@@ -181,8 +181,8 @@ export class ApiService {
    * @param {RequestInit} [options] - Optional fetch options to customize the request.
    * @returns {Promise<any>} The parsed JSON response from the API.
    */
-  async get(endpointId: string, options?: RequestInit): Promise<any> {
-    return this.fetch(endpointId, { ...options, method: 'GET' });
+  async get<T = any>(endpointId: string, options?: RequestInit): Promise<T> {
+    return this.fetch<T>(endpointId, { ...options, method: 'GET' });
   }
 
   /**
@@ -194,8 +194,8 @@ export class ApiService {
    * @param {RequestInit} [options] - Optional fetch options to customize the request.
    * @returns {Promise<any>} The parsed JSON response from the API.
    */
-  async post(endpointId: string, body: any, options?: RequestInit): Promise<any> {
-    return this.fetch(endpointId, {
+  async post<TResponse = any, TBody = any>(endpointId: string, body: TBody, options?: RequestInit): Promise<TResponse> {
+    return this.fetch<TResponse>(endpointId, {
       ...options,
       method: 'POST',
       body: JSON.stringify(body),
@@ -215,8 +215,8 @@ export class ApiService {
    * @param {RequestInit} [options] - Optional fetch options to customize the request.
    * @returns {Promise<any>} The parsed JSON response from the API.
    */
-  async put(endpointId: string, body: any, options?: RequestInit): Promise<any> {
-    return this.fetch(endpointId, {
+  async put<TResponse = any, TBody = any>(endpointId: string, body: TBody, options?: RequestInit): Promise<TResponse> {
+    return this.fetch<TResponse>(endpointId, {
       ...options,
       method: 'PUT',
       body: JSON.stringify(body),
@@ -235,7 +235,7 @@ export class ApiService {
    * @param {RequestInit} [options] - Optional fetch options to customize the request.
    * @returns {Promise<any>} The parsed JSON response from the API.
    */
-  async delete(endpointId: string, options?: RequestInit): Promise<any> {
-    return this.fetch(endpointId, { ...options, method: 'DELETE' });
+  async delete<T = any>(endpointId: string, options?: RequestInit): Promise<T> {
+    return this.fetch<T>(endpointId, { ...options, method: 'DELETE' });
   }
 }
