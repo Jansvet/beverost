@@ -1,6 +1,6 @@
 {
   "name": "beverost",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.1-beta.0",
   "description": "Beverost, the Better Server Boost. A Node.js toolkit for server development with structured logging, custom errors, and API utilities.",
   "main": "dist/cjs/src/index.js",
   "module": "dist/mjs/src/index.js",
