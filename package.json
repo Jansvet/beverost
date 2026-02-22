@@ -2,13 +2,13 @@
   "name": "beverost",
   "version": "1.0.0-beta.0",
   "description": "Beverost, the Better Server Boost. A Node.js toolkit for server development with structured logging, custom errors, and API utilities.",
-  "main": "dist/cjs/src/index.js",
-  "module": "dist/mjs/src/index.js",
+  "main": "dist/cjs/src/index.cjs",
+  "module": "dist/mjs/src/index.mjs",
   "types": "dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/src/index.js",
-      "import": "./dist/mjs/src/index.js",
+      "require": "./dist/cjs/src/index.cjs",
+      "import": "./dist/mjs/src/index.mjs",
       "types": "./dist/types/src/index.d.ts"
     }
   },
@@ -58,7 +58,6 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.19.2",
-    "fs": "^0.0.1-security",
     "winston": "^3.11.0"
   },
   "repository": {
